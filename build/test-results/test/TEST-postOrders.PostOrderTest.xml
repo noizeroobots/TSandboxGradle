@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="postOrders.PostOrderTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-05-29T20:24:29" hostname="LAPTOP-GCFDHFTO" time="3.795">
+  <properties/>
+  <testcase name="create()" classname="postOrders.PostOrderTest" time="3.795"/>
+  <system-out><![CDATA[Request method:	POST
+Request URI:	https://invest-public-api.tinkoff.ru/rest/tinkoff.public.invest.api.contract.v1.SandboxService/PostSandboxOrder
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Authorization=Bearer t.EhKpdAOrMRX-bR27rRw4qUire7HwjGIOmyPqta8t17Pd9wRBh39AbLl08yGbPToZj6gpvWgqBABzkmvKXIzP2g
+				Accept=*/*
+				Content-Type=application/json
+Cookies:		<none>
+Multiparts:		<none>
+Body:
+{
+    "figi": "BBG006L8G4H1",
+    "quantity": "10",
+    "price": {
+        "nano": 605,
+        "units": "100"
+    },
+    "direction": "ORDER_DIRECTION_BUY",
+    "accountId": "62c0b4fd-6af6-4db0-9367-d7dbbb295b82",
+    "orderType": "ORDER_TYPE_LIMIT",
+    "orderId": "2a416fd5-bdb0-4c7f-bf57-8288f429320c",
+    "instrumentId": "BBG006L8G4H1"
+}
+HTTP/1.1 200 OK
+grpc-metadata-grpc-accept-encoding: gzip
+grpc-metadata-content-type: application/grpc
+grpc-metadata-grpc-encoding: identity
+grpc-metadata-x-tracking-id: 64750a00eebdd36f628543845fec0de2
+content-type: application/json
+content-length: 864
+date: Mon, 29 May 2023 20:24:32 GMT
+x-envoy-upstream-service-time: 41
+x-k8s-istio-drop-ok: false
+x-k8s-istio-sage-group: invest
+server: envoy
+x-ratelimit-limit: 100, 100;w=60
+x-ratelimit-remaining: 99
+x-ratelimit-reset: 28
+
+{
+    "orderId": "ef9bd6d1-4250-459e-8817-ebd3bc94cfbb",
+    "executionReportStatus": "EXECUTION_REPORT_STATUS_NEW",
+    "lotsRequested": "10",
+    "lotsExecuted": "0",
+    "initialOrderPrice": {
+        "currency": "rub",
+        "units": "100",
+        "nano": 605
+    },
+    "executedOrderPrice": {
+        "currency": "rub",
+        "units": "0",
+        "nano": 0
+    },
+    "totalOrderAmount": {
+        "currency": "rub",
+        "units": "1000",
+        "nano": 6050
+    },
+    "initialCommission": {
+        "currency": "rub",
+        "units": "0",
+        "nano": 0
+    },
+    "executedCommission": {
+        "currency": "rub",
+        "units": "0",
+        "nano": 0
+    },
+    "figi": "BBG006L8G4H1",
+    "direction": "ORDER_DIRECTION_BUY",
+    "initialSecurityPrice": {
+        "currency": "rub",
+        "units": "100",
+        "nano": 605
+    },
+    "orderType": "ORDER_TYPE_LIMIT",
+    "message": "",
+    "instrumentUid": "10e17a87-3bce-4a1f-9dfc-720396f98a3c"
+}
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

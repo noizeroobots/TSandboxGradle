@@ -1,0 +1,1 @@
+{"uuid":"790afbf5-3f80-4241-8688-9e8e84b46b86","name":"GetOnlineCandlesTest","children":["94a2bf20-f040-4a64-996b-440867844f16"],"befores":[{"name":"setUp","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1685111255317,"stop":1685111256865}],"afters":[],"start":1685111255217,"stop":1685111261109}

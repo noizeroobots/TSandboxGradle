@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - PostOrderTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>PostOrderTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/postOrders.html">postOrders</a> &gt; PostOrderTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">3.795s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">create()</td>
+<td class="success">3.795s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>Request method:	POST
+Request URI:	https://invest-public-api.tinkoff.ru/rest/tinkoff.public.invest.api.contract.v1.SandboxService/PostSandboxOrder
+Proxy:			&lt;none&gt;
+Request params:	&lt;none&gt;
+Query params:	&lt;none&gt;
+Form params:	&lt;none&gt;
+Path params:	&lt;none&gt;
+Headers:		Authorization=Bearer t.EhKpdAOrMRX-bR27rRw4qUire7HwjGIOmyPqta8t17Pd9wRBh39AbLl08yGbPToZj6gpvWgqBABzkmvKXIzP2g
+				Accept=*/*
+				Content-Type=application/json
+Cookies:		&lt;none&gt;
+Multiparts:		&lt;none&gt;
+Body:
+{
+    &quot;figi&quot;: &quot;BBG006L8G4H1&quot;,
+    &quot;quantity&quot;: &quot;10&quot;,
+    &quot;price&quot;: {
+        &quot;nano&quot;: 605,
+        &quot;units&quot;: &quot;100&quot;
+    },
+    &quot;direction&quot;: &quot;ORDER_DIRECTION_BUY&quot;,
+    &quot;accountId&quot;: &quot;62c0b4fd-6af6-4db0-9367-d7dbbb295b82&quot;,
+    &quot;orderType&quot;: &quot;ORDER_TYPE_LIMIT&quot;,
+    &quot;orderId&quot;: &quot;2a416fd5-bdb0-4c7f-bf57-8288f429320c&quot;,
+    &quot;instrumentId&quot;: &quot;BBG006L8G4H1&quot;
+}
+HTTP/1.1 200 OK
+grpc-metadata-grpc-accept-encoding: gzip
+grpc-metadata-content-type: application/grpc
+grpc-metadata-grpc-encoding: identity
+grpc-metadata-x-tracking-id: 64750a00eebdd36f628543845fec0de2
+content-type: application/json
+content-length: 864
+date: Mon, 29 May 2023 20:24:32 GMT
+x-envoy-upstream-service-time: 41
+x-k8s-istio-drop-ok: false
+x-k8s-istio-sage-group: invest
+server: envoy
+x-ratelimit-limit: 100, 100;w=60
+x-ratelimit-remaining: 99
+x-ratelimit-reset: 28
+
+{
+    &quot;orderId&quot;: &quot;ef9bd6d1-4250-459e-8817-ebd3bc94cfbb&quot;,
+    &quot;executionReportStatus&quot;: &quot;EXECUTION_REPORT_STATUS_NEW&quot;,
+    &quot;lotsRequested&quot;: &quot;10&quot;,
+    &quot;lotsExecuted&quot;: &quot;0&quot;,
+    &quot;initialOrderPrice&quot;: {
+        &quot;currency&quot;: &quot;rub&quot;,
+        &quot;units&quot;: &quot;100&quot;,
+        &quot;nano&quot;: 605
+    },
+    &quot;executedOrderPrice&quot;: {
+        &quot;currency&quot;: &quot;rub&quot;,
+        &quot;units&quot;: &quot;0&quot;,
+        &quot;nano&quot;: 0
+    },
+    &quot;totalOrderAmount&quot;: {
+        &quot;currency&quot;: &quot;rub&quot;,
+        &quot;units&quot;: &quot;1000&quot;,
+        &quot;nano&quot;: 6050
+    },
+    &quot;initialCommission&quot;: {
+        &quot;currency&quot;: &quot;rub&quot;,
+        &quot;units&quot;: &quot;0&quot;,
+        &quot;nano&quot;: 0
+    },
+    &quot;executedCommission&quot;: {
+        &quot;currency&quot;: &quot;rub&quot;,
+        &quot;units&quot;: &quot;0&quot;,
+        &quot;nano&quot;: 0
+    },
+    &quot;figi&quot;: &quot;BBG006L8G4H1&quot;,
+    &quot;direction&quot;: &quot;ORDER_DIRECTION_BUY&quot;,
+    &quot;initialSecurityPrice&quot;: {
+        &quot;currency&quot;: &quot;rub&quot;,
+        &quot;units&quot;: &quot;100&quot;,
+        &quot;nano&quot;: 605
+    },
+    &quot;orderType&quot;: &quot;ORDER_TYPE_LIMIT&quot;,
+    &quot;message&quot;: &quot;&quot;,
+    &quot;instrumentUid&quot;: &quot;10e17a87-3bce-4a1f-9dfc-720396f98a3c&quot;
+}
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 7.1</a> at 29 мая 2023 г., 23:24:33</p>
+</div>
+</div>
+</body>
+</html>
