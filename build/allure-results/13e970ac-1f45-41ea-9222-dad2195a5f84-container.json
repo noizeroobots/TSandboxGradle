@@ -1,1 +1,0 @@
-{"uuid":"13e970ac-1f45-41ea-9222-dad2195a5f84","name":"GetFigiTest","children":["6c397ce7-fd9d-494f-8478-0acfb60e6358"],"befores":[{"name":"setUp","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1685110420126,"stop":1685110420127}],"afters":[],"start":1685110420125,"stop":1685110426439}

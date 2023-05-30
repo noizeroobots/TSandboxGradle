@@ -90,4 +90,11 @@ public class BodyGenerator {
     public static GetSandboxOrderStateRequest.GetSandboxOrderStateRequestBuilder getSandboxOrdersState() {
         return GetSandboxOrderStateRequest.builder();
     }
+
+    /**
+     * Метод отмены торгового поручения в песочнице.
+     */
+    public static CancelSandboxOrderRequest.CancelSandboxOrderRequestBuilder cancelSandboxOrder() {
+        return CancelSandboxOrderRequest.builder();
+    }
 }

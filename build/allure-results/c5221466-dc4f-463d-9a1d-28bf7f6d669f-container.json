@@ -1,1 +1,0 @@
-{"uuid":"c5221466-dc4f-463d-9a1d-28bf7f6d669f","name":"FindOpenCloseLevelTest","children":["d32c6d8b-d19c-4b4d-8397-3fd5c9410468"],"befores":[{"name":"setUp","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1685388139144,"stop":1685388140629}],"afters":[],"start":1685388139066,"stop":1685388145304}
