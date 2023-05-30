@@ -7,9 +7,12 @@ import helper.BodyGenerator;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.TestInstance;
+import service.dto.request.CancelSandboxOrderRequest;
 import service.dto.request.GetCandlesRequest;
+import service.dto.request.GetSandboxOrdersRequest;
 import service.dto.request.PostSandboxOrderRequest;
 import service.dto.response.candlesresponse.CandlesResponse;
+import service.dto.response.postsandboxorder.PostSandboxOrderResponse;
 
 import java.time.LocalDateTime;
 
@@ -64,4 +67,43 @@ public class BaseTest extends ProcessSetup {
         sandBoxClient.postSandboxOrder(body);
     }
 
+    /**
+     * Метод выставления торгового поручения в песочнице.
+     */
+    public PostSandboxOrderResponse postSandboxOrderMarket(String FIGI, String quantity, OrderDirection orderDirection, OrderType orderType, String accountId, String instrumentId) {
+        init();
+        PostSandboxOrderRequest body = BodyGenerator.getPostSandboxOrder()
+                .withFigi(FIGI)
+                .withQuantity(quantity)
+
+                .withOrderType(orderType)
+                .withDirection(orderDirection)
+                .withAccountId(accountId)
+                .withInstrumentId(FIGI)
+                .please();
+         return sandBoxClient.postSandboxOrder(body);
+    }
+
+    /**
+     * Метод получения списка активных заявок по счёту в песочнице.
+     */
+    public void getSandboxOrders(String accountId) {
+        init();
+        GetSandboxOrdersRequest body = BodyGenerator.getSandboxOrders()
+                .withAccountId(accountId)
+                .please();
+        sandBoxClient.getSandboxOrders(body);
+    }
+
+    /**
+     * Метод отмены торгового поручения в песочнице.
+     */
+    public void cancelSandboxOrder(String accountId, String orderId) {
+        init();
+        CancelSandboxOrderRequest body = BodyGenerator.cancelSandboxOrder()
+                .withAccountId(accountId)
+                .withOrderId(orderId)
+                .please();
+        sandBoxClient.cancelSandboxOrder(body);
+    }
 }

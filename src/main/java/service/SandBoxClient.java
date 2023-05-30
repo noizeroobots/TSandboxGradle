@@ -10,6 +10,7 @@ import org.apache.http.HttpStatus;
 import service.dto.request.*;
 import service.dto.response.SharesResponse;
 import service.dto.response.candlesresponse.CandlesResponse;
+import service.dto.response.postsandboxorder.PostSandboxOrderResponse;
 
 import static io.restassured.RestAssured.given;
 
@@ -96,13 +97,38 @@ public class SandBoxClient {
     }
 
     @Step("Метод выставления торгового поручения в песочнице.")
-    public ValidatableResponse postSandboxOrder(final PostSandboxOrderRequest body){
+    public PostSandboxOrderResponse postSandboxOrder(final PostSandboxOrderRequest body){
         return given()
                 .auth().preemptive().oauth2("t.EhKpdAOrMRX-bR27rRw4qUire7HwjGIOmyPqta8t17Pd9wRBh39AbLl08yGbPToZj6gpvWgqBABzkmvKXIzP2g")
                 .spec(requestSpecification)
                 .body(body)
                 .when()
                 .post(EndPoints.POST_SANDBOX_ORDER)
+                .then()
+                .statusCode(HttpStatus.SC_OK).extract().as(PostSandboxOrderResponse.class);
+    }
+
+    @Step("Метод получения списка активных заявок по счёту в песочнице.")
+    public ValidatableResponse getSandboxOrders(final GetSandboxOrdersRequest body){
+        return given()
+                .auth().preemptive().oauth2("t.EhKpdAOrMRX-bR27rRw4qUire7HwjGIOmyPqta8t17Pd9wRBh39AbLl08yGbPToZj6gpvWgqBABzkmvKXIzP2g")
+                .spec(requestSpecification)
+                .body(body)
+                .when()
+                .post(EndPoints.GET_SANDBOX_ORDERS)
+                .then()
+                .statusCode(HttpStatus.SC_OK);
+    }
+
+
+    @Step("Метод отмены торгового поручения в песочнице.")
+    public ValidatableResponse cancelSandboxOrder(final CancelSandboxOrderRequest body){
+        return given()
+                .auth().preemptive().oauth2("t.EhKpdAOrMRX-bR27rRw4qUire7HwjGIOmyPqta8t17Pd9wRBh39AbLl08yGbPToZj6gpvWgqBABzkmvKXIzP2g")
+                .spec(requestSpecification)
+                .body(body)
+                .when()
+                .post(EndPoints.CANCEL_SANDBOX_ORDER)
                 .then()
                 .statusCode(HttpStatus.SC_OK);
     }

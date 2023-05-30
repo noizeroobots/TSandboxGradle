@@ -31,28 +31,28 @@ public class PostSandboxOrderRequest {
     @Builder.Default
     String quantity = "string";
 
-    @Builder.Default
-    private Price price = Price.builder().build();
-
-    /**
-     * Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Игнорируется для рыночных поручений.
-     */
-    @Data
-    @Builder
-    public static class Price {
-
-        /**
-         * целая часть суммы, может быть отрицательным числом
-         */
-        @Builder.Default
-        Integer nano = 605;
-
-        /**
-         * дробная часть суммы, может быть отрицательным числом
-         */
-        @Builder.Default
-        String units = "100";
-    }
+//    @Builder.Default
+//    private Price price = Price.builder().build();
+//
+//    /**
+//     * Цена за 1 инструмент. Для получения стоимости лота требуется умножить на лотность инструмента. Игнорируется для рыночных поручений.
+//     */
+//    @Data
+//    @Builder
+//    public static class Price {
+//
+//        /**
+//         * целая часть суммы, может быть отрицательным числом
+//         */
+//        @Builder.Default
+//        Integer nano = 605;
+//
+//        /**
+//         * дробная часть суммы, может быть отрицательным числом
+//         */
+//        @Builder.Default
+//        String units = "100";
+//    }
 
     /**
      * Направление операции.

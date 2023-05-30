@@ -1,1 +1,0 @@
-{"uuid":"6d3b9f39-cf7e-4a22-a298-ae6f7c18d168","name":"TestConnection","children":["ca39d21e-0ed9-407b-9532-3fe8358a17f2"],"befores":[{"name":"setUp","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1685390856878,"stop":1685390858313}],"afters":[],"start":1685390856811,"stop":1685390861960}

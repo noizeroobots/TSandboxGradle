@@ -39,4 +39,14 @@ public class EndPoints {
      * Метод выставления торгового поручения в песочнице.
      */
     public static final String POST_SANDBOX_ORDER = "/PostSandboxOrder";
+
+    /**
+     * Метод получения списка активных заявок по счёту в песочнице.
+     */
+    public static final String GET_SANDBOX_ORDERS = "/GetSandboxOrders";
+
+    /**
+     * Метод отмены торгового поручения в песочнице.
+     */
+    public static final String CANCEL_SANDBOX_ORDER = "/CancelSandboxOrder";
 }

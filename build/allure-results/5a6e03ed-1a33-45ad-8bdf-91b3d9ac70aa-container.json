@@ -1,1 +1,0 @@
-{"uuid":"5a6e03ed-1a33-45ad-8bdf-91b3d9ac70aa","name":"GetHistoryDataTest","children":["97c6878f-b622-49ff-9e52-b4182421bc39"],"befores":[{"name":"setUp","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1685110426442,"stop":1685110426445}],"afters":[],"start":1685110426441,"stop":1685110427283}

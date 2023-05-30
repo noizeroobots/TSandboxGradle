@@ -43,8 +43,8 @@ public abstract class ProcessSetup {
         RequestSpecification postSandboxOrder = new RequestSpecBuilder()
                 .setContentType(ContentType.JSON)
                 .addFilter(new AllureRestAssured())
-                .addFilter(new RequestLoggingFilter(LogDetail.ALL))
-                .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
+                //.addFilter(new RequestLoggingFilter(LogDetail.ALL))
+                //.addFilter(new ResponseLoggingFilter(LogDetail.ALL))
                 .setBaseUri(config.sandboxHostname())
                 .build();
 
