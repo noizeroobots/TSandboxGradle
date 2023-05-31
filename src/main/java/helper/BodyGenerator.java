@@ -97,4 +97,25 @@ public class BodyGenerator {
     public static CancelSandboxOrderRequest.CancelSandboxOrderRequestBuilder cancelSandboxOrder() {
         return CancelSandboxOrderRequest.builder();
     }
+
+    /**
+     * Метод закрытия счёта в песочнице.
+     */
+    public static CloseSandboxAccountRequest.CloseSandboxAccountRequestBuilder closeSandboxAccount() {
+        return CloseSandboxAccountRequest.builder();
+    }
+
+    /**
+     * Метод получения счетов в песочнице.
+     */
+    public static GetSandboxAccountsRequest.GetSandboxAccountsRequestBuilder getSandboxAccounts() {
+        return GetSandboxAccountsRequest.builder();
+    }
+
+    /**
+     * Метод получения операций в песочнице по номеру счёта.
+     */
+    public static GetSandboxOperationsRequest.GetSandboxOperationsRequestBuilder getSandboxOperations() {
+        return GetSandboxOperationsRequest.builder();
+    }
 }

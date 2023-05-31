@@ -1,15 +1,21 @@
 package postOrders;
 
 import config.BaseTest;
+import enums.OperationState;
 import enums.OrderDirection;
 import enums.OrderType;
+import helper.BodyGenerator;
 import io.qameta.allure.Allure;
+import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import service.dto.request.GetSandboxOperationsRequest;
 import service.dto.response.postsandboxorder.PostSandboxOrderResponse;
+
+import java.time.LocalDateTime;
 
 /**
  * Figi для акции YNDX : "BBG006L8G4H1"
@@ -58,6 +64,34 @@ public class PostOrderTest extends BaseTest {
     void cancelOrderTest() {
         Allure.step("Тест отмены торгового поручения в песочнице.", () -> {
             baseTest.getSandboxOrders(accountId);
+        });
+    }
+
+    @Test
+    void getSandboxAccountsTest() {
+        Allure.step("Метод получения счетов в песочнице.", () -> {
+            baseTest.getSandboxAccounts();
+        });
+    }
+
+    @Test
+    void closeSandboxAccountsTest() {
+        Allure.step("Метод закрытия счёта в песочнице.", () -> {
+            baseTest.closeSandboxAccounts("8aa2f82a-321b-4003-9cce-b3747b17449d");
+        });
+    }
+
+    @Test
+    @Description("Метод получения операций в песочнице по номеру счёта.")
+    void getSandboxOperationsTest() {
+        Allure.step("data", () -> {
+            sandBoxClient.getSandboxOperations(BodyGenerator.getSandboxOperations()
+                    .withAccountId(accountId)
+                    .withFigi(FIGI)
+                    .withFrom(convertData.convertData(LocalDateTime.now().minusDays(2).toString()))
+                    .withTo(convertData.convertData(LocalDateTime.now().toString()))
+                    .withState(OperationState.OPERATION_STATE_EXECUTED)
+                    .please());
         });
     }
 }
