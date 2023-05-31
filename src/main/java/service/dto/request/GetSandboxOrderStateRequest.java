@@ -9,4 +9,10 @@ import lombok.Data;
 @Data
 @Builder(buildMethodName = "please", setterPrefix = "with")
 public class GetSandboxOrderStateRequest {
+
+    @Builder.Default
+    String accountId = "accountId";
+
+    @Builder.Default
+    String orderId = "accountId";
 }

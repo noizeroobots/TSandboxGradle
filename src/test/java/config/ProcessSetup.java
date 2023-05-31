@@ -1,5 +1,6 @@
 package config;
 
+import delegats.ConvertData;
 import delegats.FindOpenCloseLevel;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
@@ -23,6 +24,7 @@ public abstract class ProcessSetup {
     protected SandBoxClient sandBoxClient;
     protected FindOpenCloseLevel findOpenCloseLevel;
     protected BaseConfig config;
+    protected ConvertData convertData;
     protected static final ConditionFactory WAIT = await()
             .atMost(Duration.ofHours(24))
             .pollInterval(Duration.ofSeconds(10))
@@ -44,12 +46,13 @@ public abstract class ProcessSetup {
                 .setContentType(ContentType.JSON)
                 .addFilter(new AllureRestAssured())
                 //.addFilter(new RequestLoggingFilter(LogDetail.ALL))
-                //.addFilter(new ResponseLoggingFilter(LogDetail.ALL))
+                .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
                 .setBaseUri(config.sandboxHostname())
                 .build();
 
         sandBoxClient = new SandBoxClient(tSandBox);
         sandBoxClient = new SandBoxClient(postSandboxOrder);
         findOpenCloseLevel = new FindOpenCloseLevel();
+        convertData = new ConvertData();
     }
 }

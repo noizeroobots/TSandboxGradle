@@ -1,16 +1,14 @@
 package config;
 
 import enums.Candle_Interval;
+import enums.OperationState;
 import enums.OrderDirection;
 import enums.OrderType;
 import helper.BodyGenerator;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.TestInstance;
-import service.dto.request.CancelSandboxOrderRequest;
-import service.dto.request.GetCandlesRequest;
-import service.dto.request.GetSandboxOrdersRequest;
-import service.dto.request.PostSandboxOrderRequest;
+import service.dto.request.*;
 import service.dto.response.candlesresponse.CandlesResponse;
 import service.dto.response.postsandboxorder.PostSandboxOrderResponse;
 
@@ -81,7 +79,7 @@ public class BaseTest extends ProcessSetup {
                 .withAccountId(accountId)
                 .withInstrumentId(FIGI)
                 .please();
-         return sandBoxClient.postSandboxOrder(body);
+        return sandBoxClient.postSandboxOrder(body);
     }
 
     /**
@@ -105,5 +103,35 @@ public class BaseTest extends ProcessSetup {
                 .withOrderId(orderId)
                 .please();
         sandBoxClient.cancelSandboxOrder(body);
+    }
+
+    /**
+     * Метод получения счетов в песочнице.
+     */
+    public void getSandboxAccounts() {
+        init();
+        sandBoxClient.getSandboxAccounts(BodyGenerator.getSandboxAccounts().please());
+    }
+
+    /**
+     * Метод закрытия счёта в песочнице.
+     */
+    public void closeSandboxAccounts(String accountId) {
+        init();
+        sandBoxClient.closeSandboxAccount(BodyGenerator.closeSandboxAccount().withAccountId(accountId).please());
+    }
+
+    /**
+     * Метод получения операций в песочнице по номеру счёта.
+     */
+    public void getSandboxOperations(String accountId, String from, String to, OperationState state, String figi) {
+        init();
+        sandBoxClient.getSandboxOperations(BodyGenerator.getSandboxOperations()
+                .withAccountId(accountId)
+                .withFrom(from)
+                .withTo(to)
+                .withState(state)
+                .withFigi(figi)
+                .please());
     }
 }
