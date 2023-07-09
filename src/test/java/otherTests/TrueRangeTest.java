@@ -1,7 +1,5 @@
-package calculateATR;
+package otherTests;
 
-import algorithms.SuperTrend21062023;
-import config.BaseTest;
 import delegats.CalculateTR;
 import delegats.candles.ConvertCandlesToDoubleArrays;
 import io.qameta.allure.Epic;
@@ -16,20 +14,16 @@ import java.util.List;
 
 @Epic("Connection test")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class Try1_CalculateATR {
+public class TrueRangeTest {
 
     private CalculateTR calculateTR;
     private ConvertCandlesToDoubleArrays convertCandlesToDoubleArrays;
     private String FIGI = "BBG00178PGX3"; // VCKO
-    BaseTest baseTest;
-    private SuperTrend21062023 superTrend21062023;
 
     @BeforeAll
-    void setUp() throws IOException {
+    void setUp() {
         calculateTR = new CalculateTR();
         convertCandlesToDoubleArrays = new ConvertCandlesToDoubleArrays();
-         baseTest = new BaseTest();
-         superTrend21062023 = new SuperTrend21062023();
 
     }
 
@@ -43,8 +37,21 @@ public class Try1_CalculateATR {
         GetCandlesResponse candlesResponse = convertCandlesToDoubleArrays.getCandles(3, FIGI);
         List<String> trueRange = calculateTR.calculateTrueRangeReturnStringList(candlesResponse);
         for (int i = 0; i < trueRange.size(); i++) {
-            //System.out.println("index = " + i + " | True range: " + trueRange.get(i));
-            System.out.println(trueRange.get(i));
+            System.out.println("index = " + i + " | True range: " + trueRange.get(i));
+        }
+    }
+
+    /**
+     * Определение истинного диапазона (True Range, TR)
+     * Возвращает List<Double> для дальнейшей работы
+     */
+    @Test
+    @DisplayName("Определение истинного диапазона (True Range, TR)")
+    public void returnListDoubleTrueRange() throws IOException {
+        GetCandlesResponse candlesResponse = convertCandlesToDoubleArrays.getCandles(3, FIGI);
+        List<Double> trueRange = calculateTR.calculateTrueRangeReturnDoubleList(candlesResponse);
+        for (int i = 0; i < trueRange.size(); i++) {
+            System.out.println("index = " + i + " | True range: " + trueRange.get(i));
         }
     }
 
@@ -57,31 +64,10 @@ public class Try1_CalculateATR {
     public void returnArrayDoubleTrueRange() throws IOException {
         GetCandlesResponse candlesResponse = convertCandlesToDoubleArrays.getCandles(3, FIGI);
         //double[] tr = new double[candlesResponse.getCandles().size()];
-        int period = 10;
         int sizeOfArray = calculateTR.calculateTrueRangeReturnDoubleArray(candlesResponse).length;
         System.out.println("Размер массива TrueRange = " + sizeOfArray + "\n");
         for (int i = 0; i < sizeOfArray; i++) {
             System.out.println("index = " + i + " | True range: " + calculateTR.calculateTrueRangeReturnDoubleArray(candlesResponse)[i]);
         }
-
-
-        double atr = calculateTR.calculateTrueRangeReturnDoubleArray(candlesResponse)[0];
-        for (int i = 1; i < calculateTR.calculateTrueRangeReturnDoubleArray(candlesResponse).length; i++) {
-            double tr = calculateTR.calculateTrueRangeReturnDoubleArray(candlesResponse)[i];
-            atr = ((period - 1) * atr + tr) / period;
-            System.out.println(atr);
-        }
-        System.out.println("______" + atr);
     }
-
-    @Test
-    @DisplayName("Определение истинного диапазона (True Range, TR)")
-    public void testSuperTrend21062023() throws IOException {
-       superTrend21062023.testSuperTrend();
-    }
-
 }
-
-
-
-

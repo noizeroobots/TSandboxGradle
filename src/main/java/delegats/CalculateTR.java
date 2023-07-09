@@ -1,5 +1,6 @@
 package delegats;
 
+import delegats.candles.ConvertCandlesToDoubleArrays;
 import service.marketDataService.dto.response.GetCandlesResponse;
 
 import java.io.IOException;
