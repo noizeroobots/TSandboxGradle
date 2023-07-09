@@ -3,6 +3,7 @@ package database.candles.dao;
 import database.candles.entity.Candles;
 import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
 import org.jdbi.v3.sqlobject.customizer.Bind;
+import org.jdbi.v3.sqlobject.statement.SqlQuery;
 import org.jdbi.v3.sqlobject.statement.SqlUpdate;
 
 @RegisterBeanMapper(Candles.class)
@@ -33,4 +34,7 @@ public interface CandlesDao {
             , @Bind("close") double close
             , @Bind("volume") double volume
             , @Bind("isComplete") boolean isComplete);
+
+    @SqlQuery("SELECT * FROM candles WHERE time = :time")
+    Candles findCandleByTime(@Bind("time") String time);
 }

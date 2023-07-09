@@ -1,7 +1,7 @@
 package interactionWithDB;
 
-import config.BaseTestDataBase;
 import database.candles.dao.CandlesDaoImpl;
+import database.candles.entity.Candles;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,12 +10,14 @@ import org.junit.jupiter.api.TestInstance;
 
 @Epic("Work with database")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class InteractionWithDBTest extends BaseTestDataBase {
+public class InteractionWithDBTest {
 
     private CandlesDaoImpl candlesDaoImpl;
+    private Candles candles;
 
     @BeforeAll
     void init() {
+        candles = new Candles();
         candlesDaoImpl = new CandlesDaoImpl();
     }
 
@@ -35,5 +37,12 @@ public class InteractionWithDBTest extends BaseTestDataBase {
     @Description("Создание таблицы Candles в БД")
     void createTableCandle() {
         candlesDaoImpl.createTable();
+    }
+
+    @Test
+    @Description("Получить свечку по time")
+    void selectCandle() {
+        candles = candlesDaoImpl.selectCandle("Mikhail");
+        System.out.println(candles);
     }
 }

@@ -1,6 +1,5 @@
 package helper;
 
-import database.model.CandleModel;
 import lombok.experimental.UtilityClass;
 import service.marketDataService.dto.request.GetCandlesRequest;
 import service.sandboxService.dto.request.*;
@@ -120,10 +119,4 @@ public class BodyGenerator {
     public static GetSandboxOperationsRequest.GetSandboxOperationsRequestBuilder getSandboxOperations() {
         return GetSandboxOperationsRequest.builder();
     }
-
-    /**
-     *
-     * @return тело свечки
-     */
-    public static CandleModel.CandleModelBuilder getCandleModel() {return CandleModel.builder();}
 }
