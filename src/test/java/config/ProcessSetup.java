@@ -1,6 +1,5 @@
 package config;
 
-import database.steps.InteractionWithDB;
 import delegats.ConvertData;
 import delegats.FindOpenCloseLevel;
 import io.qameta.allure.restassured.AllureRestAssured;
@@ -13,12 +12,9 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.aeonbits.owner.ConfigFactory;
 import org.awaitility.core.ConditionFactory;
-import org.ta4j.core.BarSeries;
-import org.ta4j.core.BaseBarSeries;
 import service.marketDataService.MarketDataServiceClient;
 import service.sandboxService.SandBoxClient;
 
-import java.sql.Connection;
 import java.time.Duration;
 
 import static org.awaitility.Awaitility.await;
