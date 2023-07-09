@@ -1,55 +1,37 @@
-import com.google.type.DateTime;
-import config.BaseConfig;
+import config.BaseTest;
 import enums.Candle_Interval;
 import helper.BodyGenerator;
 import io.qameta.allure.Epic;
-import io.qameta.allure.restassured.AllureRestAssured;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.filter.log.LogDetail;
-import io.restassured.filter.log.RequestLoggingFilter;
-import io.restassured.filter.log.ResponseLoggingFilter;
-import io.restassured.http.ContentType;
-import io.restassured.specification.RequestSpecification;
-import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import service.SandBoxClient;
-import service.dto.request.GetCandlesRequest;
-import service.dto.response.candlesresponse.CandlesResponse;
+import service.marketDataService.dto.request.GetCandlesRequest;
+import service.marketDataService.dto.response.GetCandlesResponse;
 
 import java.io.IOException;
-import java.time.*;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Epic("Get history data test")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class GetCandlesTest {
+public class GetCandlesTest extends BaseTest {
 
-    private SandBoxClient sandBoxClient;
-    private final String FIGI = "BBG004S68507";
+
+    private final String FIGI = "BBG00178PGX3"; // VCKO
 
     @BeforeAll
     void setUp() {
-        BaseConfig config = ConfigFactory.create(BaseConfig.class);
-
-        RequestSpecification tSandBox = new RequestSpecBuilder()
-                .setContentType(ContentType.JSON)
-                .addFilter(new AllureRestAssured())
-                .addFilter(new RequestLoggingFilter(LogDetail.ALL))
-                .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
-                .setBaseUri(config.candlesHostname())
-                .build();
-
-        sandBoxClient = new SandBoxClient(tSandBox);
+        init();
+        BaseTest baseTest = new BaseTest();
     }
 
     @Test
     @DisplayName("Get candles test")
     public void testCandlesTest() throws IOException {
-        String dateFrom = LocalDateTime.now().minusHours(6).toString();
-        String dateTo = LocalDateTime.now().toString();
+        String dateFrom = LocalDateTime.now().minusDays(14).toString();
+        String dateTo = LocalDateTime.now().minusDays(7).toString();
 
         String dateFromEd = dateFrom.substring(0, dateFrom.length() - 6) + "Z";
         String dateToEd = dateTo.substring(0, dateTo.length() - 6) + "Z";
@@ -58,11 +40,71 @@ public class GetCandlesTest {
                 .withFigi(FIGI)
                 .withFrom(dateFromEd)
                 .withTo(dateToEd)
-                .withInterval(Candle_Interval.CANDLE_INTERVAL_1_MIN)
+                .withInterval(Candle_Interval.CANDLE_INTERVAL_HOUR)
                 .please();
 
 
-        CandlesResponse candles = sandBoxClient.getCandles(body);
-        System.out.println(candles.getCandles().size());
+        GetCandlesResponse candles = marketDataServiceClient.getCandles(body);
+        System.out.println("Количество свечек = " + candles.getCandles().size());
+        System.out.println("\n\n\n\n");
+        String time;
+        double open;
+        double high;
+        double low;
+        double close;
+        List<Double> highArray = new ArrayList<>();
+        Double[] lowArray = new Double[candles.getCandles().size()];
+        Double[] closeArray = new Double[candles.getCandles().size()];
+        Double[] trueRangeArray = new Double[candles.getCandles().size() - 1];
+
+
+        for (int i = 0; i < candles.getCandles().size(); i++) {
+            time = candles.getCandles().get(i).getTime();
+            open = combineUnitsAndNano(candles.getCandles().get(i).getOpen().getNano(), candles.getCandles().get(i).getOpen().getUnits());
+            high = combineUnitsAndNano(candles.getCandles().get(i).getHigh().getNano(), candles.getCandles().get(i).getHigh().getUnits());
+            low = combineUnitsAndNano(candles.getCandles().get(i).getLow().getNano(), candles.getCandles().get(i).getLow().getUnits());
+            close = combineUnitsAndNano(candles.getCandles().get(i).getClose().getNano(), candles.getCandles().get(i).getClose().getUnits());
+            highArray.add(high);
+            lowArray[i] = low;
+            closeArray[i] = close;
+        }
+
+        System.out.println("Количество свечек = " + candles.getCandles().size());
+        System.out.println("Размер List highArray = " + highArray.size());
+        System.out.println("Размер массива lowArray = " + lowArray.length);
+        System.out.println("Размер массива closeArray = " + closeArray.length);
+
+
+//        for (int i = 1; i < candles.getCandles().size(); i++) {
+//
+//            double trElement = Math.max((highArray[i] - lowArray[i]),
+//                    Math.max(Math.abs(highArray[i] - closeArray[i - 1]), Math.abs(lowArray[i] - closeArray[i - 1])));
+//            //System.out.println("True Range = " + trElement);
+//            trueRangeArray[i - 1] = trElement;
+//        }
+//        for (int i = 0; i < trueRangeArray.length; i++) {
+//            System.out.println(i + ") true range from trueRangeArray | " + trueRangeArray[i]);
+//        }
+//
+//        for (int j = 0; j < trueRangeArray.length - 3; j++) {
+//            double summ = 0;
+//            for (int i = j; i < 10 + j; i++) {
+//                summ += trueRangeArray[i];
+//            }
+//
+//            double av = summ / 10;
+//            System.out.println("Average = " + av);
+//        }
+
+//        List<String> ll = new ArrayList<>();
+//        for (int i = 0; i < candles.getCandles().size(); i++) {
+//            ll.add(candles.getCandles().get(i).getClose().getUnits() + "." + String.valueOf(candles.getCandles().get(i).getClose().getNano()));
+//            System.out.println(candles.getCandles().get(i).getClose().getUnits() + "." + candles.getCandles().get(i).getClose().getNano());
+//        }
+//        System.out.println("Количество свечек: " + candles.getCandles().size());
+//
+//        double atr = calculateATR(candles, 13);
+//        System.out.println(atr);
+
     }
 }

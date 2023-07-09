@@ -13,9 +13,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import service.SandBoxClient;
-import service.dto.request.SharesRequest;
-import service.dto.response.SharesResponse;
+import service.sandboxService.SandBoxClient;
+import service.sandboxService.dto.request.SharesRequest;
+import service.sandboxService.dto.response.SharesResponse;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,7 +36,7 @@ public class GetFigiTest {
                 .addFilter(new AllureRestAssured())
                 .addFilter(new RequestLoggingFilter(LogDetail.ALL))
                 .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
-                .setBaseUri(config.sharesHostname())
+                .setBaseUri("https://invest-public-api.tinkoff.ru/rest/tinkoff.public.invest.api.contract.v1.InstrumentsService/Shares")
                 .build();
 
         sandBoxClient = new SandBoxClient(tSandBox);
@@ -46,26 +46,26 @@ public class GetFigiTest {
     @DisplayName("Get history data test")
     public void testGetHistoryDataTest() throws IOException {
         //sandBoxClient.getHistoryData(figi, 2023);
-        SharesRequest bodyShare = BodyGenerator.getShares().withInstrument_status(2).please();
+        SharesRequest bodyShare = BodyGenerator.getShares().withInstrument_status(1).please();
 
         SharesResponse sharesResponse = new SharesResponse();
         //sandBoxClient.getShares(bodyShare);
         sharesResponse = sandBoxClient.getShares(bodyShare);
-        for (int i = 0; i <= sharesResponse.getInstruments().size() - 1; i++) {
-            String classCode = sharesResponse.getInstruments().get(i).getClassCode();
-            String figi = sharesResponse.getInstruments().get(i).getFigi();
-            String ticker = sharesResponse.getInstruments().get(i).getTicker();
-            String countryOfRisk = sharesResponse.getInstruments().get(i).getCountryOfRisk();
-            if (countryOfRisk.equals("RU") && (ticker.length() == 4)) {
-                String res = i + " - " + "TIKER: " + ticker + " | " + "FIGI: " + figi + " | " + "CLASSCODE: " + classCode;
-
-                FileWriter writer = new FileWriter("Figi_is_here.txt", true);
-                writer.write(res);
-                writer.append('\n');
-                writer.flush();
-            }
-            System.out.println(i + " - " + "TIKER: " + ticker + " | " + "FIGI: " + figi + " | " + "CLASSCODE: " + classCode);
-        }
+//        for (int i = 0; i <= sharesResponse.getInstruments().size() - 1; i++) {
+//            String classCode = sharesResponse.getInstruments().get(i).getClassCode();
+//            String figi = sharesResponse.getInstruments().get(i).getFigi();
+//            String ticker = sharesResponse.getInstruments().get(i).getTicker();
+//            String countryOfRisk = sharesResponse.getInstruments().get(i).getCountryOfRisk();
+//            if (countryOfRisk.equals("RU") && (ticker.length() == 4)) {
+//                String res = i + " - " + "TIKER: " + ticker + " | " + "FIGI: " + figi + " | " + "CLASSCODE: " + classCode;
+//
+//                FileWriter writer = new FileWriter("Figi_is_here.txt", true);
+//                writer.write(res);
+//                writer.append('\n');
+//                writer.flush();
+//            }
+//            System.out.println(i + " - " + "TIKER: " + ticker + " | " + "FIGI: " + figi + " | " + "CLASSCODE: " + classCode);
+//        }
 
 
     }

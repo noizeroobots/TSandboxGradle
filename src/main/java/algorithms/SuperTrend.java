@@ -38,7 +38,7 @@ public class SuperTrend {
         }
 
         private void calculateBasicBands() {
-            for (int i = 1; i < BASIC_UPPER.length; i++) {
+            for (int i = 0; i < BASIC_UPPER.length -1; i++) {
                 double highValue = HIGH[i];
                 double lowValue = LOW[i];
 
@@ -63,7 +63,7 @@ public class SuperTrend {
             for (int i = 0; i < SUPERTREND.length; i++) {
                 if (CLOSE[i] <= FINAL_UPPER[i]) {
                     SUPERTREND[i] = FINAL_UPPER[i];
-                    System.out.println("low - " + time);
+
                 } else {
                     SUPERTREND[i] = FINAL_LOWER[i];
                     System.out.println("\thigh - " + time);

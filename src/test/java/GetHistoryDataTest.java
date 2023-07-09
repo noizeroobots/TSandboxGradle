@@ -1,5 +1,4 @@
 import config.BaseConfig;
-import helper.BodyGenerator;
 import io.qameta.allure.Epic;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -13,13 +12,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import service.SandBoxClient;
-import service.dto.request.SharesRequest;
-import service.dto.response.SharesResponse;
+import service.sandboxService.SandBoxClient;
 
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.zip.ZipOutputStream;
 
 @Epic("Get history data test")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
