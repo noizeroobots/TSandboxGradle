@@ -35,4 +35,9 @@ public class CandlesDaoImpl {
     public Candles selectCandle(String time) {
         return candlesDao.findCandleByTime(time);
     }
+
+    @Step("Удалить дублирующиеся строки в таблице candles")
+    public void deleteDuplicateRows() {
+        candlesDao.deleteDuplicateRows();
+    }
 }

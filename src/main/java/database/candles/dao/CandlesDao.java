@@ -37,4 +37,9 @@ public interface CandlesDao {
 
     @SqlQuery("SELECT * FROM candles WHERE time = :time")
     Candles findCandleByTime(@Bind("time") String time);
+
+    @SqlUpdate("DELETE FROM candles a " +
+            "USING candles b " +
+            "WHERE a.candle_id < b.candle_id AND a.time = b.time")
+    void deleteDuplicateRows();
 }

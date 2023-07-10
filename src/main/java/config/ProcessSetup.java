@@ -41,7 +41,7 @@ public abstract class ProcessSetup {
         RequestSpecification marketDataService = new RequestSpecBuilder()
                 .setContentType(ContentType.JSON)
                 .addFilter(new AllureRestAssured())
-                .addFilter(new RequestLoggingFilter(LogDetail.ALL))
+               // .addFilter(new RequestLoggingFilter(LogDetail.ALL))
                 //.addFilter(new ResponseLoggingFilter(LogDetail.ALL))
                 .setBaseUri(config.marketDataServiceHostname())
                 .build();
