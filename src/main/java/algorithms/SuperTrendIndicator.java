@@ -159,5 +159,4 @@ public class SuperTrendIndicator {
             return "Buy";
         return "Sell";
     }
-
 }

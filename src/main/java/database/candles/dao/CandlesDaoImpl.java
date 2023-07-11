@@ -40,4 +40,14 @@ public class CandlesDaoImpl {
     public void deleteDuplicateRows() {
         candlesDao.deleteDuplicateRows();
     }
+
+    @Step("Получить свечку по candle_id")
+    public Candles selectCandleByCandleId(Integer candle_id) {
+        return candlesDao.selectCandleFromDB(candle_id);
+    }
+
+    @Step("Определить кол-во строк в таблице candles")
+    public Integer getSizeOfTableCandles() {
+        return candlesDao.getSizeOfTableCandles();
+    }
 }
