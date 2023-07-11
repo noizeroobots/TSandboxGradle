@@ -42,4 +42,10 @@ public interface CandlesDao {
             "USING candles b " +
             "WHERE a.candle_id < b.candle_id AND a.time = b.time")
     void deleteDuplicateRows();
+
+    @SqlQuery("SELECT * FROM candles WHERE candle_id = :candle_id")
+    Candles selectCandleFromDB(@Bind("candle_id") Integer candle_id);
+
+    @SqlQuery("SELECT COUNT(candle_id) FROM candles")
+    Integer getSizeOfTableCandles();
 }
