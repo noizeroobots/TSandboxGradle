@@ -2,6 +2,7 @@ package database.candles.dao;
 
 import database.candles.JdbiConnection;
 import database.candles.entity.Candles;
+import database.candles.entity.CandlesWithTrueRange;
 import io.qameta.allure.Step;
 
 public class CandlesDaoImpl {

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Candles {
+public class CandlesWithTrueRange {
 
     private int candle_id;
     private String time;
@@ -17,4 +17,5 @@ public class Candles {
     private String close;
     private String volume;
     private String isComplete;
+    private double tr;
 }
